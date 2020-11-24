@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { Spinner } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -13,6 +14,7 @@ import './login.css'
 function Login() {
   const dispatch = useDispatch()
   const history = useHistory()
+  const [isLoading, setIsLoading] = useState(false)
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
   const [msg,setMsg] = useState("")
@@ -20,6 +22,7 @@ function Login() {
 
 
   const handleLogin = useCallback(() => {
+    setIsLoading(true)
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
         db.collection('users').where('id', '==', firebase.auth().currentUser.uid).get()
@@ -29,9 +32,11 @@ function Login() {
             localStorage.setItem('laundrySky@user', JSON.stringify(doc.data()))
             history.push('/home')
           })
+        }).catch(() => {
+          setIsLoading(false)
         })
-      }).catch(error => {
-        setMsg('error')
+      }).catch(() => {
+        setIsLoading(false)
       })
   }, [email, password, db, dispatch, history])
 
@@ -60,9 +65,15 @@ function Login() {
             placeholder="Senha"
           />
 
-        <button className="btn btn-lg btn-primary btn-block btn-login" type="button" onClick={handleLogin}>
-          Entrar
-        </button>
+        {
+          isLoading ? (
+            <Spinner animation="border" variant="light"/>
+          ) : (
+            <button className="btn btn-lg btn-primary btn-block btn-login" type="button" onClick={handleLogin}>
+              Entrar
+            </button>
+          )
+        }
 
         <div className="msg-login text-white text-center my-5">
           {
