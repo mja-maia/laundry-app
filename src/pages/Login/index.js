@@ -17,7 +17,6 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false)
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [msg,setMsg] = useState("")
   const db = firebase.firestore()
 
 
@@ -74,14 +73,6 @@ function Login() {
             </button>
           )
         }
-
-        <div className="msg-login text-white text-center my-5">
-          {
-            msg === 'success' ? (<span><strong>Wow!</strong> Você está conectado &#128526;</span>) : msg === 'error' ? (
-              <span><strong>Ops!</strong> Usuário ou senha incorreto &#128546;</span>
-            ) : null
-          }
-        </div>
 
         <div className="login-options mt-5 text-center">
           <Link to="/signup" className="mx-2">Criar Conta</Link>

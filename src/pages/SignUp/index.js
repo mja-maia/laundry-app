@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Form, Button, Row } from "react-bootstrap";
+import { Form, Button, Row, Spinner } from "react-bootstrap";
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -14,6 +14,7 @@ import "./signup.css";
 
 function SignUp() {
   const [formData, setFormData] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
   const db = firebase.firestore()
   const history = useHistory()
@@ -26,6 +27,7 @@ function SignUp() {
     if (adminPassword !== 'skystudios@2020') {
       toast.error('Senha do administrador incorreta')
     } else {
+      setIsLoading(true)
       firebase.auth().createUserWithEmailAndPassword(email, password).then(result => {
         db.collection('users').add({
           id: result.user.uid,
@@ -41,9 +43,10 @@ function SignUp() {
           unit
         }))
 
+        setIsLoading(false)
         history.push('/home')
       }).catch(e => {
-        console.log('error =====>', e)
+        setIsLoading(false)
         if(e.code === 'auth/email-already-in-use'){
           toast.warn('Email já cadastrado, por favor utilize outro')
         } else if(e.code === 'auth/weak-passwordc'){
@@ -95,9 +98,15 @@ function SignUp() {
         </Form.Group>
 
         <Form.Group as={Row}>
-          <Button variant="primary" type="button" onClick={handleSignup}>
-            Cadastrar
-          </Button>
+          {
+            isLoading ? (
+              <Spinner animation="border" variant="light"/>
+            ) : (
+              <Button variant="primary" type="button" onClick={handleSignup}>
+                Cadastrar
+              </Button>
+            )
+          }
         </Form.Group>
       </Form>
     </div>
