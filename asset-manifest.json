@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/skystudios/static/css/main.f3a45abf.chunk.css",
+    "main.js": "/skystudios/static/js/main.61bf5f04.chunk.js",
+    "main.js.map": "/skystudios/static/js/main.61bf5f04.chunk.js.map",
+    "runtime-main.js": "/skystudios/static/js/runtime-main.f1f291ad.js",
+    "runtime-main.js.map": "/skystudios/static/js/runtime-main.f1f291ad.js.map",
+    "static/css/2.fe9152c0.chunk.css": "/skystudios/static/css/2.fe9152c0.chunk.css",
+    "static/js/2.48f6a9c6.chunk.js": "/skystudios/static/js/2.48f6a9c6.chunk.js",
+    "static/js/2.48f6a9c6.chunk.js.map": "/skystudios/static/js/2.48f6a9c6.chunk.js.map",
+    "index.html": "/skystudios/index.html",
+    "static/css/2.fe9152c0.chunk.css.map": "/skystudios/static/css/2.fe9152c0.chunk.css.map",
+    "static/css/main.f3a45abf.chunk.css.map": "/skystudios/static/css/main.f3a45abf.chunk.css.map",
+    "static/js/2.48f6a9c6.chunk.js.LICENSE.txt": "/skystudios/static/js/2.48f6a9c6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f1f291ad.js",
+    "static/css/2.fe9152c0.chunk.css",
+    "static/js/2.48f6a9c6.chunk.js",
+    "static/css/main.f3a45abf.chunk.css",
+    "static/js/main.61bf5f04.chunk.js"
+  ]
+}
